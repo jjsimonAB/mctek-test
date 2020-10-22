@@ -1,5 +1,5 @@
-# mctek-test
-Quick test for mctek recruitment process
+# Mctekk-test
+Quick test for Mctekk.
 
 To test the scrip first you neet to build the containers using:
 
