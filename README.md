@@ -13,7 +13,7 @@ There are 3 commands you can use list, add and delete
 
 ## List
 
->**note**: the first time run the script twice, the first time the script is gonna fetch the data to the redis container.
+>**note**: the first time run the script twice, the first time the script is gonna populate redis with data.
 
 To list the previuously created list use:
 
