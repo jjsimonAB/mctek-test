@@ -7,7 +7,7 @@ To test the scrip first you neet to build the containers using:
 
 To run the php script use:
 
-> $ docker-compose run --rm php php ./index.php <command>
+> $ docker-compose run --rm php php ./index.php [command]
 
 There are 3 commands you can use list, add and delete
 
@@ -27,13 +27,13 @@ this should return an ordenated movie list
 
 To add a new item use:
 
-> $ docker-compose run --rm php php ./index.php add <item-name> <item-childs>(optional)
+> $ docker-compose run --rm php php ./index.php add [item-name] [item-childs (optional)]
 
 ## Delete
 
 To delete a certain item just send the item key using:
 
-> $docker-compose run --rm php php ./index.php delete <key>
+> $docker-compose run --rm php php ./index.php delete [key]
 
 ## Redis structure
 
