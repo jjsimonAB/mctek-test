@@ -1,6 +1,11 @@
 # Mctekk-test
 Quick test for Mctekk.
 
+
+## Requirements:
+Docker and docker-compose installed
+
+
 To test the scrip first you neet to build the containers using:
 
 > $ docker-compose build
