@@ -19,7 +19,7 @@ To list the previuously created list use:
 
 > $ docker-compose run --rm php php ./index.php list
 
-this should return an ordenated movie list
+this should return an ordenated list of items
 
 ## Add
 
