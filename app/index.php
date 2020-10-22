@@ -98,32 +98,11 @@ function lists($keys, $redis) {
 
 function generateList($dataChilds, $redis, $counter = 0 ) {
 
+    // Leaving this here, but you should be fine with just using $counter.
+    // Since you are not using pass by reference variable.
     $iterationCounter = $counter;
-    $tabs = "\t";
-
-    //Quick tabbing solution 
-    //TO-DO: refactor it
-    if(isset($counter)) {
-        switch($iterationCounter) {
-            case 1:
-                $tabs = "\t \t";
-            break;
-            case 2: 
-                $tabs = "\t \t";
-            break;
-            case 3: 
-                $tabs = "\t \t \t";
-            break;
-            case 4: 
-                $tabs = "\t \t \t";
-            break;
-            case 5: 
-                $tabs = "\t \t \t \t";
-            break;
-            default:   
-                null;
-        }
-    }
+    // Just create a string by repeating tabs $counter + 1 amounts of time.
+    $tabs = str_repeat("\t", $counter + 1);
 
     //iterating and displaying childs of each parent
     foreach($dataChilds as $child) {
