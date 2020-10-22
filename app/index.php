@@ -6,7 +6,7 @@ try {
     $redis->connect('rediscont', 6379); 
     $allKeys = $redis->keys("*");
     if(empty($allKeys)){
-        echo "no data found, proceeding to fetch data...";
+        echo "no data found, proceeding to insert data into redis... \n";
         $redis->hmset("1", [
             'name' => 'movie 1', 
             'childs' => '2,5,6,4']);
@@ -59,7 +59,6 @@ try {
     } 
 
     sort($allKeys);
-
     //options
     switch($argv[1]){
         case 'list':
@@ -67,12 +66,12 @@ try {
             lists($keys, $redis);
         break;
         case 'add':
-            echo "add flow";
+            echo "add flow \n";
             $item = [$argv[2], (isset($argv[3]) ? $argv[3] : '')];
             addItem($item, $redis, $allKeys);
         break;
         case 'delete':
-            echo "delete flow";
+            echo "delete flow \n";
             deleteItem($argv[2], $redis);
         break;
         default:
@@ -84,19 +83,26 @@ try {
 }
 
 function lists($keys, $redis) {
-    $hasChild = false;
-    $data = $redis->hgetall($keys);
-    $dataChilds = explode(",", $data['childs']);
-    print_r($data['name']."\n");
-    if(!empty($dataChilds)){
-        generateList($dataChilds, $redis, null);
+    try {
+        $data = $redis->hgetall($keys);
+        $dataChilds = explode(",", $data['childs']);
+        print_r($data['name']."\n");
+        if(!empty($dataChilds)){
+            generateList($dataChilds, $redis, null);
+        }
+    }catch (Exception $e){
+        echo $e;
     }
+
 }
 
 function generateList($dataChilds, $redis, $counter = 0 ) {
 
     $iterationCounter = $counter;
     $tabs = "\t";
+
+    //Quick tabbing solution 
+    //TO-DO: refactor it
     if(isset($counter)) {
         switch($iterationCounter) {
             case 1:
@@ -119,6 +125,7 @@ function generateList($dataChilds, $redis, $counter = 0 ) {
         }
     }
 
+    //iterating and displaying childs of each parent
     foreach($dataChilds as $child) {
         $childName = $redis->hgetall($child);
         $childSubNodes = explode(",", $childName['childs']);
@@ -132,12 +139,17 @@ function generateList($dataChilds, $redis, $counter = 0 ) {
 
 function addItem($item, $redis, $keys) {
     $id = sizeof($keys) + 1;
-    $rootChilds = $redis->hgetall(1);
-    $newChilds = $rootChilds['childs'] . ",$id";
-    $redis->hset(1,'childs',$rootChilds['childs'] . ",$id");
-    $redis->hmset($id, [
-        'name' => $item[0], 
-        'childs' => (!empty($item[1]) ? $item[1] : '')]);
+    try {
+        $rootChilds = $redis->hgetall(1);
+        $newChilds = $rootChilds['childs'] . ",$id";
+        $redis->hset(1,'childs',$rootChilds['childs'] . ",$id");
+        $redis->hmset($id, [
+            'name' => $item[0], 
+            'childs' => (!empty($item[1]) ? $item[1] : '')]);
+    }catch (Exception $e){
+        echo $e;
+    }
+
 }
 
 function deleteItem($id, $redis) {
