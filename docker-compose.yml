@@ -1,0 +1,11 @@
+version: '2'
+services:
+  php:
+    build: .docker/php
+    links:
+      - redis:devcache1
+    volumes:
+      - ./app:/usr/src/app
+  redis:
+    build: .docker/redis
+    container_name: devcache1

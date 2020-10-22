@@ -1,0 +1,16 @@
+SET 1 {"name": "movie 1", "childs": [2,5,6,4]}
+SET 2 {"name": "movie 2", "childs": []}
+SET 3 {"name": "movie 3", "childs": [7]}
+SET 4 {"name": "movie 4", "childs": [8,15,14]}
+SET 5 {"name": "serie 1", "childs": [9]}
+SET 6 {"name": "serie 2", "childs": [10, 3]}
+SET 7 {"name": "serie 3", "childs": [13]}
+SET 8 {"name": "serie 4", "childs": [20]}
+SET 9 {"name": "movie A", "childs": [20]}
+SET 10 {"name": "movie B", "childs": [11,12]}
+SET 11 {"name": "series A", "childs": [20]}
+SET 12 {"name": "series B", "childs": [20]}
+SET 13 {"name": "mini series 1", "childs": [20]}
+SET 14 {"name": "mini series 2", "childs": [20]}
+SET 15 {"name": "serie 5", "childs": [16]}
+SET 16 {"name": "movie 5", "childs": []}
