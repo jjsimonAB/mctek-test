@@ -3,9 +3,9 @@ services:
   php:
     build: .docker/php
     links:
-      - redis:devcache1
+      - redis:rediscont
     volumes:
       - ./app:/usr/src/app
   redis:
     build: .docker/redis
-    container_name: devcache1
+    container_name: rediscont

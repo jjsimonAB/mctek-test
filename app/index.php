@@ -3,7 +3,7 @@
 try {
 
     $redis = new Redis(); 
-    $redis->connect('devcache1', 6379); 
+    $redis->connect('rediscont', 6379); 
     $allKeys = $redis->keys("*");
     if(empty($allKeys)){
         echo "no data found, proceeding to fetch data...";
