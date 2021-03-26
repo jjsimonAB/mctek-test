@@ -5,6 +5,7 @@ try {
     $redis = new Redis(); 
     $redis->connect('rediscont', 6379); 
     $allKeys = $redis->keys("*");
+    print_r('e');
     if(empty($allKeys)){
         echo "no data found, proceeding to insert data into redis... \n";
         $redis->hmset("1", [
